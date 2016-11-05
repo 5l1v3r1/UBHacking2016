@@ -69,6 +69,7 @@ while(len(articles)<n_of_articles):
 
                                         articles.append(ID)
                                         out_file.write(headline)
+					out_file.write(" ")
                                         out_file.write(abstract)
                                         out_file.write("\n")
 					out_file.write("#")
