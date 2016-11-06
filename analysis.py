@@ -12,10 +12,11 @@ class Analysis:
 				return 0
 				#0 indicates it fits the verb first form			
 #			if tagged[0][1].find 	#implement this if i care at some point
-		return 0
+		return -1
 							
 				
 	def blb_top_bottom(self, title):
+		print("in top bot")
 		if self.fits_blb(title) == 0: #if it fits blb verb first form
 			top = title[0] + title[1] + title[2] + title[3]
 			i = 4
@@ -23,7 +24,9 @@ class Analysis:
 			while i < len(title):
 				bottom = bottom + title[i]
 #		if self.fits_blb(title) == 1: #do this?
-		return [top, bottom]
+			return [top, bottom]
+		
+		return -1
 		
 				
 	def gen_memes(self):
@@ -31,10 +34,9 @@ class Analysis:
 		#make a list of each type of meme. list contains urls 
 		with open("out.txt", "r") as f:
 			for line in f:
-				print(line.split('|')[3])
-				if line.split('|')[3].find('BLB') != -1: #.find wor
-					top_bottom = self.blb_top_bottom(line.split('|'))[0]
-#					blb.append(m.gen_meme(m.meme_to_id("bad luck brian"), top_bottom[0], top_bottom[1]).json()['data']['url'])
-					url = m.gen_meme(m.meme_to_id("bad luck brian"), top_bottom[0], top_bottom[1]).json()['data']['url']
+				print(line.split('|')[3].strip())
+				if line.split('|')[3].strip().find('BLB') != -1: #.find workedkedked
+					top_bottom = self.blb_top_bottom(line.split('|')[0])
+					blb.append(m.gen_meme(m.meme_to_id("bad luck brian"), top_bottom[0], top_bottom[1]).json()['data']['url'])
 		return blb
 									
