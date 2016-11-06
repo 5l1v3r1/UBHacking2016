@@ -46,6 +46,7 @@ while(len(articles)<n_of_articles):
         headline = ""
         ID=""
         abstract=""
+        url = ""
 
         if(len(articles)>=n_of_articles):
             break;
@@ -54,11 +55,14 @@ while(len(articles)<n_of_articles):
         if(article["_id"]is not None and len(article["_id"])!=0):
             if(article["headline"]['main']is not None and len(article["headline"]['main'])!=0):
                 if(article["snippet"] is not None and len(article["snippet"])!=0):
+                    if(article["web_url"] is not None and len(article["web_url"])!=0):
+
 
 
                                headline = article["headline"]['main'].encode('utf-8')
                                ID = article["_id"].encode('utf-8')
                                abstract=article["snippet"].encode('utf-8')
+                               url=article["web_url"]
                                #abstract = unicodedata.normalize('NFKD', article["snippet"]).encode('ascii','ignore')
                                #url = unicodedata.normalize('NFKD', article["web_url"]).encode('ascii','ignore')
                                #ID = unicodedata.normalize('NFKD', article["_id"]).encode('ascii','ignore')
@@ -69,10 +73,12 @@ while(len(articles)<n_of_articles):
 
                                         articles.append(ID)
                                         out_file.write(headline)
-					out_file.write(" ")
+                                        out_file.write("|")
                                         out_file.write(abstract)
+                                        out_file.write("|")
+                                        out_file.write(url)
                                         out_file.write("\n")
-					out_file.write("#")
+
 
 
 
