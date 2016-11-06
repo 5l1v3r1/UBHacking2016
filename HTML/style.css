@@ -1,0 +1,126 @@
+@font-face {
+    font-family: newspaperHeader;
+    src: url(fonts/RadioNewsman.ttf);
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+html {
+  background: url(images/newspaperB.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+#wrapper{
+
+    font-family:newspaperHeader;
+    text-align: center;
+    top: 60px;
+    position: relative;
+}
+
+
+
+#title{
+    font-size:42pt;
+    color:#000;
+    position: relative;
+    margin-bottom: 20px;
+
+
+}
+
+
+
+#memeContainer{
+
+   width:75%;
+   margin:auto;
+   position: relative;
+   #border: 4px dotted black;
+   height: 800px;
+   top: 80px;
+
+}
+
+
+
+
+
+#memeLeft{
+
+    width: 230px;
+    font-family:newspaperHeader;
+    height: 310px;
+    border: 1px solid black;
+    position: relative;
+    float: left;
+    left: 20px;
+    margin-right: 1%;
+    margin-top: 30px;
+
+
+
+
+}
+
+
+
+#memeRight{
+
+    width: 230px;
+    font-family:newspaperHeader;
+    height: 310px;
+    border: 1px solid black;
+    position: relative;
+    float: right;
+    margin-top: 30px;
+    margin-left: 1%;
+    right: 20px;
+
+
+}
+
+
+
+
+
+
+#line{
+
+    background: url(images/inklineV.png);
+    width: 75%;
+    height: 10px;
+    position: relative;
+    margin: auto;
+
+
+}
+
+
+
+
+
+#memeBox{
+
+    width: 40px;
+    height: 80 px;
+    border: 4px solid black;
+
+}
+
+
+hr {
+    border: none;
+    height: 4px;
+    /* Set the hr color */
+    color: #000; /* old IE */
+    background-color: #000; /* Modern Browsers */
+}

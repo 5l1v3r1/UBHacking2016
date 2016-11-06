@@ -11,7 +11,7 @@ import unicodedata
 
 
 
-n_of_articles=50
+n_of_articles=1000
 articles=[]
 today = date.today()
 n_calls=0
@@ -93,7 +93,7 @@ while(len(articles)<n_of_articles):
     n_calls+=1
     print "- "+str(n_calls)+" calls done, articles size = "+str(len(articles))
     print "- waiting 1 seconds, then call again."
-    time.sleep(1)
+    time.sleep(0.8)
 
 
 
