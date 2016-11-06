@@ -5,42 +5,36 @@ import meme
 class Analysis:
 	m = meme.Meme()
 	
-	def tag_titles(self):
-		titles = []
-		with open("out.txt", "r") as f:
-			for line in f:
-				titles.append(line.split('|')[0])
-		for i in range(len(titles)):
-			title = nltk.pos_tag(nltk.word_tokenize(titles[i]))
-			titles[i]=title
-		return titles
-
-	def is_possible_blb(self, titles):
-		fit_the_template_start_verb = []
-		fit_the_template_start_noun = []
-		for i in range(len(titles)):
-		#	for word in titles[i]:
-			for j in range(len(titles[i])-3):
-				#first one handles if an action is first. they are sometimes internpreted as NNS
-				#measurements of time like all or A are expressed as DDT
-	#pattern 1: first:( vb || nns ) second:( dt || nn || toi
-				if (titles[i][j][1].find('VB') != -1 or titles[i][j][1].find('NNS') != -1)and (titles[i][j+1][1].find('DT') != -1 or titles[i][j+1][1].find('NN')!= -1 or titles[i][j+1][1].find('TO') != -1 ) and titles[i][j+2][1].find('NN'):
-					print("fuuuck")
-					fit_the_template_start_verb.append(titles[i][j][0])
-				if titles[i][j][1].find(' '): #write the criteria for the one that starts with noun here	
-					fit_the_template_start_noun.append(titles[i][j][0])
-	if evans output is badluckbrian and line is stored as templine 
-	def fits_blb(self, title):
+	def fits_blb(self, title):#returns 0 or 1 for which type of blb it fits
 		tagged = nltk.pos_tag(nltk.word_tokenize(title))
 		for i in range(len(tagged)-3):
-			
-			
+			if (tagged[0][1].find('VB') != -1 or tagged[0][1].find('NNS') != -1)and (tagged[1][1].find('DT') != -1 or tagged[1][1].find('NN')!= -1 or tagged[1][1].find('TO') != -1 ) and tagged[2][1].find('NN') != -1:
+				return 0
+				#0 indicates it fits the verb first form			
+#			if tagged[0][1].find 	#implement this if i care at some point
+		return 0
 							
-	def out_txt_fits_blb(self): # outputs 
-		memes = []
-		
-		tagged = self.tag_titles()
 				
+	def blb_top_bottom(self, title):
+		if self.fits_blb(title) == 0: #if it fits blb verb first form
+			top = title[0] + title[1] + title[2] + title[3]
+			i = 4
+			bottom = ""
+			while i < len(title):
+				bottom = bottom + title[i]
+#		if self.fits_blb(title) == 1: #do this?
+		return [top, bottom]
 		
-
-	
+				
+	def gen_memes(self):
+		blb = []
+		#make a list of each type of meme. list contains urls 
+		with open("out.txt", "r") as f:
+			for line in f:
+				print(line.split('|')[3])
+				if line.split('|')[3].find('BLB') != -1: #.find wor
+					top_bottom = self.blb_top_bottom(line.split('|'))[0]
+#					blb.append(m.gen_meme(m.meme_to_id("bad luck brian"), top_bottom[0], top_bottom[1]).json()['data']['url'])
+					url = m.gen_meme(m.meme_to_id("bad luck brian"), top_bottom[0], top_bottom[1]).json()['data']['url']
+		return blb
+									
