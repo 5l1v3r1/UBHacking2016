@@ -3,7 +3,7 @@ import nltk
 import meme
 
 class Analysis:
-	m = meme.Meme()
+#	m = meme.Meme()
 	
 	def fits_blb(self, title):#returns 0 or 1 for which type of blb it fits
 		tagged = nltk.pos_tag(nltk.word_tokenize(title))
@@ -16,27 +16,34 @@ class Analysis:
 							
 				
 	def blb_top_bottom(self, title):
+		itle = nltk.word_tokenize(title)
 		print("in top bot")
 		if self.fits_blb(title) == 0: #if it fits blb verb first form
-			top = title[0] + title[1] + title[2] + title[3]
+			
+			print(len(itle))
+			print(itle[0])
+			top = itle[0] + " " + itle[1] + " " +  itle[2] + " "+ itle[3]
 			i = 4
 			bottom = ""
-			while i < len(title):
-				bottom = bottom + title[i]
+			while i < len(itle):
+				bottom = bottom + itle[i] + " "
+				i = i + 1
 #		if self.fits_blb(title) == 1: #do this?
 			return [top, bottom]
 		
-		return -1
+		return -1 #returns -1 if doesn't fit template
 		
 				
 	def gen_memes(self):
+		m = meme.Meme()
 		blb = []
 		#make a list of each type of meme. list contains urls 
 		with open("out.txt", "r") as f:
 			for line in f:
 				print(line.split('|')[3].strip())
 				if line.split('|')[3].strip().find('BLB') != -1: #.find workedkedked
-					top_bottom = self.blb_top_bottom(line.split('|')[0])
-					blb.append(m.gen_meme(m.meme_to_id("bad luck brian"), top_bottom[0], top_bottom[1]).json()['data']['url'])
+					top_bottom = self.blb_top_bottom(line.split('|')[0].strip())
+					if top_bottom != -1:
+						blb.append(m.gen_meme(m.meme_to_id("bad luck brian"), top_bottom[0], top_bottom[1]).json()['data']['url'])
 		return blb
 									
